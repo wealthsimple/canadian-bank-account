@@ -36,6 +36,9 @@ module.exports =
       regex: /^[0-9]{7}$/
       error: "Desjardins account number must be 7 digits long. The last digit on your cheque, the verification digit, is part of your 7 digit account number."
   "828":
+    transit:
+      regex: /^10[0-9]{3}$/
+      error: "Central 1 transit number must begin with 10XXX."
     account:
       regex: /^[0-9]{5,12}$/
       error: "Central 1 account number must be 5 to 12 digits long. This account number appears on your cheque after the institution number (828)."

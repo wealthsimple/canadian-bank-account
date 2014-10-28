@@ -4,12 +4,34 @@ var Data;
 Data = require('./data');
 
 window.CanadianBank = (function() {
+  CanadianBank.prototype.defaultTransitRegex = /^[0-9]{5}$/;
+
+  CanadianBank.prototype.defaultTransitError = "Transit number must be 5 digits long.";
+
   function CanadianBank(_arg) {
     this.institution = _arg.institution, this.transit = _arg.transit, this.account = _arg.account;
   }
 
   CanadianBank.prototype.isKnownInstitution = function() {
     return this.data() != null;
+  };
+
+  CanadianBank.prototype.isTransitValid = function() {
+    var isValid, _ref;
+    if (this.transit == null) {
+      isValid = false;
+    } else if (((_ref = this.data().transit) != null ? _ref.regex : void 0) == null) {
+      isValid = this.transit.match(this.defaultTransitRegex) != null;
+    } else if (_.isArray(this.data().transit.regex)) {
+      isValid = _.any(this.data().transit.regex, (function(_this) {
+        return function(regex) {
+          return _this.transit.match(regex) != null;
+        };
+      })(this));
+    } else {
+      isValid = this.transit.match(this.data().transit.regex) != null;
+    }
+    return isValid;
   };
 
   CanadianBank.prototype.isAccountValid = function() {
@@ -29,10 +51,14 @@ window.CanadianBank = (function() {
   };
 
   CanadianBank.prototype.errors = function() {
-    var errors;
+    var error, errors, _ref;
     errors = [];
     if (!this.isAccountValid()) {
       errors.push(this.data().account.error);
+    }
+    if (!this.isTransitValid()) {
+      error = (((_ref = this.data().transit) != null ? _ref.error : void 0) != null) || this.defaultTransitError;
+      errors.push(error);
     }
     return errors;
   };
@@ -104,6 +130,10 @@ module.exports = {
     }
   },
   "828": {
+    transit: {
+      regex: /^10[0-9]{3}$/,
+      error: "Central 1 transit number must begin with 10XXX."
+    },
     account: {
       regex: /^[0-9]{5,12}$/,
       error: "Central 1 account number must be 5 to 12 digits long. This account number appears on your cheque after the institution number (828)."
