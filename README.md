@@ -24,7 +24,10 @@ invalidAccount.transitErrors(); // Returns ["Transit number must be 5 digits lon
 invalidAccount.accountErrors(); // Returns ["Bank of Montreal account number must be 7 digits long."]
 ```
 
-## Acknowlegments
+## Acknowledgments
 
-Validation rules based on the following article:
-https://squareup.com/help/en-ca/article/5173-bank-account-troubleshooting
+Validation rules based on the following article: [Square - Bank Account Troubleshooting](https://squareup.com/help/en-ca/article/5173-bank-account-troubleshooting)
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
