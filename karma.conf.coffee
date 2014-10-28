@@ -15,9 +15,10 @@ module.exports = (config) ->
 
     # list of files / patterns to load in the browser
     files: [
+      'test/vendor/**/*.js',
       'test/support/**/*.coffee',
       'test/*test.coffee',
-      'canadian-bank.js'
+      'canadian-bank-account.js'
     ]
 
 

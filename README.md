@@ -1,4 +1,4 @@
-# canadian-bank
+# canadian-bank-account
 
 Validate transit and account numbers of common Canadian banks.
 
