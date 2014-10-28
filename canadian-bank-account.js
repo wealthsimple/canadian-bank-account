@@ -51,14 +51,24 @@ window.CanadianBankAccount = (function() {
   };
 
   CanadianBankAccount.prototype.errors = function() {
+    return this.transitErrors().concat(this.accountErrors());
+  };
+
+  CanadianBankAccount.prototype.transitErrors = function() {
     var error, errors, _ref;
     errors = [];
-    if (!this.isAccountValid()) {
-      errors.push(this.data().account.error);
-    }
     if (!this.isTransitValid()) {
       error = (((_ref = this.data().transit) != null ? _ref.error : void 0) != null) || this.defaultTransitError;
       errors.push(error);
+    }
+    return errors;
+  };
+
+  CanadianBankAccount.prototype.accountErrors = function() {
+    var errors;
+    errors = [];
+    if (!this.isAccountValid()) {
+      errors.push(this.data().account.error);
     }
     return errors;
   };

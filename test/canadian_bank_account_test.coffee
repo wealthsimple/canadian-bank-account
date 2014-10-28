@@ -55,15 +55,30 @@ describe "CanadianBankAccount", ->
         expect(factory(institution: "828", transit: "12345").isTransitValid()).toBe(false)
         expect(factory(institution: "828", transit: "103456").isTransitValid()).toBe(false)
 
-  describe "#errors", ->
+  describe "errors", ->
     context "all provided numbers are valid", ->
+      beforeEach ->
+        @subject = factory()
+
       it "returns an empty array", ->
-        expect(factory().errors()).toEqual([])
+        expect(@subject.accountErrors()).toEqual([])
+        expect(@subject.transitErrors()).toEqual([])
+        expect(@subject.errors()).toEqual([])
 
     context "account number is invalid", ->
+      beforeEach ->
+        @subject = factory(account: "123")
+
       it "returns the right error", ->
-        expect(factory(account: "123").errors()).toEqual(["Bank of Montreal account number must be 7 digits long."])
+        expect(@subject.accountErrors()).toEqual(["Bank of Montreal account number must be 7 digits long."])
+        expect(@subject.transitErrors()).toEqual([])
+        expect(@subject.errors()).toEqual(["Bank of Montreal account number must be 7 digits long."])
 
     context "transit number is invalid", ->
+      beforeEach ->
+        @subject = factory(transit: "123")
+
       it "returns the right error", ->
-        expect(factory(transit: "123").errors()).toEqual(["Transit number must be 5 digits long."])
+        expect(@subject.transitErrors()).toEqual(["Transit number must be 5 digits long."])
+        expect(@subject.accountErrors()).toEqual([])
+        expect(@subject.errors()).toEqual(["Transit number must be 5 digits long."])

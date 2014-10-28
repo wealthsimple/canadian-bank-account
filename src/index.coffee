@@ -34,11 +34,18 @@ class window.CanadianBankAccount
     isValid
 
   errors: ->
+    @transitErrors().concat(@accountErrors())
+
+  transitErrors: ->
     errors = []
-    errors.push(@data().account.error)  unless @isAccountValid()
     unless @isTransitValid()
       error = @data().transit?.error? || @defaultTransitError
       errors.push(error)
+    errors
+
+  accountErrors: ->
+    errors = []
+    errors.push(@data().account.error)  unless @isAccountValid()
     errors
 
   data: ->
