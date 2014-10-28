@@ -35,6 +35,10 @@ describe "CanadianBankAccount", ->
         expect(factory(institution: "001", account: "123").isAccountValid()).toBe(false)
         expect(factory(institution: "001", account: "12345678").isAccountValid()).toBe(false)
 
+    context "for an unknown institution", ->
+      it "returns true", ->
+        expect(factory(institution: "789").isAccountValid()).toBe(true)
+
   describe "#isTransitValid", ->
     context "with a BMO account", ->
       it "returns true for any 5-digit string", ->
@@ -54,6 +58,10 @@ describe "CanadianBankAccount", ->
         expect(factory(institution: "828", transit: "10").isTransitValid()).toBe(false)
         expect(factory(institution: "828", transit: "12345").isTransitValid()).toBe(false)
         expect(factory(institution: "828", transit: "103456").isTransitValid()).toBe(false)
+
+    context "for an unknown institution", ->
+      it "returns true", ->
+        expect(factory(institution: "789").isTransitValid()).toBe(true)
 
   describe "errors", ->
     context "all provided numbers are valid", ->

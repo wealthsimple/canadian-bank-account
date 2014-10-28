@@ -17,12 +17,13 @@ window.CanadianBankAccount = (function() {
   };
 
   CanadianBankAccount.prototype.isTransitValid = function() {
-    var _ref, _ref1;
-    return this.validate(this.transit, (_ref = (_ref1 = this.data().transit) != null ? _ref1.regex : void 0) != null ? _ref : this.defaultTransitRegex);
+    var _ref, _ref1, _ref2;
+    return this.validate(this.transit, (_ref = (_ref1 = this.data()) != null ? (_ref2 = _ref1.transit) != null ? _ref2.regex : void 0 : void 0) != null ? _ref : this.defaultTransitRegex);
   };
 
   CanadianBankAccount.prototype.isAccountValid = function() {
-    return this.validate(this.account, this.data().account.regex);
+    var _ref, _ref1;
+    return this.validate(this.account, (_ref = this.data()) != null ? (_ref1 = _ref.account) != null ? _ref1.regex : void 0 : void 0);
   };
 
   CanadianBankAccount.prototype.errors = function() {
@@ -53,7 +54,9 @@ window.CanadianBankAccount = (function() {
   };
 
   CanadianBankAccount.prototype.validate = function(value, regex) {
-    if ((value == null) || (regex == null)) {
+    if (!this.isKnownInstitution()) {
+      return true;
+    } else if (value == null) {
       return false;
     } else if (_.isArray(regex)) {
       return _.any(regex, function(regex) {
