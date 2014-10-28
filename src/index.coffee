@@ -45,3 +45,5 @@ class window.CanadianBankAccount
       _.any(regex, (regex) -> value.match(regex)?)
     else
       value.match(regex)?
+
+window.CanadianBankAccount.Data = Data

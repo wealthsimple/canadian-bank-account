@@ -71,6 +71,8 @@ window.CanadianBankAccount = (function() {
 
 })();
 
+window.CanadianBankAccount.Data = Data;
+
 
 
 },{"./data":2}],2:[function(require,module,exports){
