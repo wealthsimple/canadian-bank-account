@@ -6,10 +6,10 @@ class window.CanadianBank
   isKnownInstitution: ->
     @data()?
 
-  isAccountNumberValid: ->
-    return false  unless @account?
-
-    if _.isArray(@data().account.regex)
+  isAccountValid: ->
+    if !@account?
+      isValid = false
+    else if _.isArray(@data().account.regex)
       isValid = _.any @data().account.regex, (regex) =>
         @account.match(regex)?
     else
@@ -18,7 +18,7 @@ class window.CanadianBank
 
   errors: ->
     errors = []
-    errors.push(@data().account.error)  unless @isAccountNumberValid()
+    errors.push(@data().account.error)  unless @isAccountValid()
     errors
 
   data: ->

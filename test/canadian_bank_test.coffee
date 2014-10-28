@@ -15,25 +15,25 @@ describe "CanadianBank", ->
       it "returns false", ->
         expect(factory(institution: "789").isKnownInstitution()).toBe(false)
 
-  describe "#isAccountNumberValid", ->
+  describe "#isAccountValid", ->
     context "with a Scotiabank account", ->
       it "returns true for valid account numbers", ->
-        expect(factory(institution: "002", account: "1234567").isAccountNumberValid()).toBe(true)
-        expect(factory(institution: "002", account: "123456789123").isAccountNumberValid()).toBe(true)
+        expect(factory(institution: "002", account: "1234567").isAccountValid()).toBe(true)
+        expect(factory(institution: "002", account: "123456789123").isAccountValid()).toBe(true)
 
       it "returns false for invalid account numbers", ->
-        expect(factory(institution: "002", account: "").isAccountNumberValid()).toBe(false)
-        expect(factory(institution: "002", account: "123").isAccountNumberValid()).toBe(false)
-        expect(factory(institution: "002", account: "12345678").isAccountNumberValid()).toBe(false)
+        expect(factory(institution: "002", account: "").isAccountValid()).toBe(false)
+        expect(factory(institution: "002", account: "123").isAccountValid()).toBe(false)
+        expect(factory(institution: "002", account: "12345678").isAccountValid()).toBe(false)
 
     context "with a BMO account", ->
       it "returns true for valid account number", ->
-        expect(factory(institution: "001", account: "1234567").isAccountNumberValid()).toBe(true)
+        expect(factory(institution: "001", account: "1234567").isAccountValid()).toBe(true)
 
       it "returns false for invalid account number", ->
-        expect(factory(institution: "001", account: "").isAccountNumberValid()).toBe(false)
-        expect(factory(institution: "001", account: "123").isAccountNumberValid()).toBe(false)
-        expect(factory(institution: "001", account: "12345678").isAccountNumberValid()).toBe(false)
+        expect(factory(institution: "001", account: "").isAccountValid()).toBe(false)
+        expect(factory(institution: "001", account: "123").isAccountValid()).toBe(false)
+        expect(factory(institution: "001", account: "12345678").isAccountValid()).toBe(false)
 
   describe "#errors", ->
     context "all provided numbers are valid", ->

@@ -12,12 +12,11 @@ window.CanadianBank = (function() {
     return this.data() != null;
   };
 
-  CanadianBank.prototype.isAccountNumberValid = function() {
+  CanadianBank.prototype.isAccountValid = function() {
     var isValid;
     if (this.account == null) {
-      return false;
-    }
-    if (_.isArray(this.data().account.regex)) {
+      isValid = false;
+    } else if (_.isArray(this.data().account.regex)) {
       isValid = _.any(this.data().account.regex, (function(_this) {
         return function(regex) {
           return _this.account.match(regex) != null;
@@ -32,7 +31,7 @@ window.CanadianBank = (function() {
   CanadianBank.prototype.errors = function() {
     var errors;
     errors = [];
-    if (!this.isAccountNumberValid()) {
+    if (!this.isAccountValid()) {
       errors.push(this.data().account.error);
     }
     return errors;
