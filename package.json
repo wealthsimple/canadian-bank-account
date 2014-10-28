@@ -1,0 +1,40 @@
+{
+  "name": "canadian-bank",
+  "version": "0.0.1",
+  "description": "Validates transit and account numbers of common Canadian banks",
+  "main": "canadian-bank.js",
+  "scripts": {
+    "test": "node_modules/karma/bin/karma start karma.conf.coffee --single-run --browsers PhantomJS"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wealthsimple/canadian-bank"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wealthsimple/canadian-bank/issues"
+  },
+  "browserify": {
+    "transform": [
+      "coffeeify"
+    ]
+  },
+  "homepage": "https://github.com/wealthsimple/canadian-bank",
+  "devDependencies": {
+    "browserify": "6.2.0",
+    "coffee-script": "1.7.1",
+    "coffeeify": "0.7.0",
+    "gulp": "3.8.9",
+    "gulp-notify": "2.0.0",
+    "gulp-util": "3.0.1",
+    "karma": "0.12.24",
+    "karma-coffee-preprocessor": "0.2.1",
+    "karma-jasmine": "0.1.5",
+    "karma-osx-reporter": "0.1.0",
+    "karma-phantomjs-launcher": "0.1.4",
+    "karma-spec-reporter": "0.0.13",
+    "vinyl-source-stream": "0.1.1",
+    "lodash": "^2.4.1"
+  }
+}
