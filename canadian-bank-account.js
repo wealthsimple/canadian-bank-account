@@ -3,20 +3,20 @@ var Data;
 
 Data = require('./data');
 
-window.CanadianBank = (function() {
-  CanadianBank.prototype.defaultTransitRegex = /^[0-9]{5}$/;
+window.CanadianBankAccount = (function() {
+  CanadianBankAccount.prototype.defaultTransitRegex = /^[0-9]{5}$/;
 
-  CanadianBank.prototype.defaultTransitError = "Transit number must be 5 digits long.";
+  CanadianBankAccount.prototype.defaultTransitError = "Transit number must be 5 digits long.";
 
-  function CanadianBank(_arg) {
+  function CanadianBankAccount(_arg) {
     this.institution = _arg.institution, this.transit = _arg.transit, this.account = _arg.account;
   }
 
-  CanadianBank.prototype.isKnownInstitution = function() {
+  CanadianBankAccount.prototype.isKnownInstitution = function() {
     return this.data() != null;
   };
 
-  CanadianBank.prototype.isTransitValid = function() {
+  CanadianBankAccount.prototype.isTransitValid = function() {
     var isValid, _ref;
     if (this.transit == null) {
       isValid = false;
@@ -34,7 +34,7 @@ window.CanadianBank = (function() {
     return isValid;
   };
 
-  CanadianBank.prototype.isAccountValid = function() {
+  CanadianBankAccount.prototype.isAccountValid = function() {
     var isValid;
     if (this.account == null) {
       isValid = false;
@@ -50,7 +50,7 @@ window.CanadianBank = (function() {
     return isValid;
   };
 
-  CanadianBank.prototype.errors = function() {
+  CanadianBankAccount.prototype.errors = function() {
     var error, errors, _ref;
     errors = [];
     if (!this.isAccountValid()) {
@@ -63,11 +63,11 @@ window.CanadianBank = (function() {
     return errors;
   };
 
-  CanadianBank.prototype.data = function() {
+  CanadianBankAccount.prototype.data = function() {
     return Data[this.institution];
   };
 
-  return CanadianBank;
+  return CanadianBankAccount;
 
 })();
 

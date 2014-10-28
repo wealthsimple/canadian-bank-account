@@ -1,6 +1,6 @@
 Data = require('./data')
 
-class window.CanadianBank
+class window.CanadianBankAccount
   # Canadian transit/branch numbers are always 5 digits:
   # http://en.wikipedia.org/wiki/Routing_transit_number#Canadian_transit_number
   defaultTransitRegex: /^[0-9]{5}$/

@@ -1,6 +1,6 @@
-describe "CanadianBank", ->
+describe "CanadianBankAccount", ->
   factory = (attributes = {}) ->
-    new CanadianBank({
+    new CanadianBankAccount({
       institution: attributes.institution ? "001"
       transit: attributes.transit ? "12345"
       account: attributes.account ? "1234567"

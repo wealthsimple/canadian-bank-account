@@ -1,26 +1,26 @@
 {
-  "name": "canadian-bank",
+  "name": "canadian-bank-account",
   "version": "0.0.1",
   "description": "Validates transit and account numbers of common Canadian banks",
-  "main": "canadian-bank.js",
+  "main": "canadian-bank-account.js",
   "scripts": {
     "test": "node_modules/karma/bin/karma start karma.conf.coffee --single-run --browsers PhantomJS"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/wealthsimple/canadian-bank"
+    "url": "git://github.com/wealthsimple/canadian-bank-account"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wealthsimple/canadian-bank/issues"
+    "url": "https://github.com/wealthsimple/canadian-bank-account/issues"
   },
   "browserify": {
     "transform": [
       "coffeeify"
     ]
   },
-  "homepage": "https://github.com/wealthsimple/canadian-bank",
+  "homepage": "https://github.com/wealthsimple/canadian-bank-account",
   "devDependencies": {
     "browserify": "6.2.0",
     "coffee-script": "1.7.1",

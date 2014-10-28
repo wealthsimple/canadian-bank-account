@@ -21,7 +21,7 @@ gulp.task 'browserify', ->
   bundler
     .bundle()
     .on('error', handleErrors)
-    .pipe(source('canadian-bank.js'))
+    .pipe(source('canadian-bank-account.js'))
     .pipe(gulp.dest('.'))
     .on 'end', ->
       gutil.log('Finished', gutil.colors.green("'bundle'"))

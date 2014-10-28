@@ -18,7 +18,7 @@ module.exports = (config) ->
       'test/vendor/**/*.js',
       'test/support/**/*.coffee',
       'test/*test.coffee',
-      'canadian-bank.js'
+      'canadian-bank-account.js'
     ]
 
 
