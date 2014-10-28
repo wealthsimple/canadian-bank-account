@@ -5,11 +5,19 @@ Validate transit and account numbers of common Canadian banks.
 ## Usage
 
 ```javascript
-var tdBankAccount = new CanadianBankAccount({institution: "003", transit: "12345", account: "1234567"});
+var tdBankAccount = new CanadianBankAccount({
+  institution: "003",
+  transit: "12345",
+  account: "1234567"
+});
 tdBankAccount.isTransitValid(); // Returns true
 tdBankAccount.isAccountValid(); // Returns true
 
-var invalidAccount = new CanadianBankAccount({institution: "001", transit: "123", account: "123456789"});
+var invalidAccount = new CanadianBankAccount({
+  institution: "001",
+  transit: "123",
+  account: "123456789"
+});
 invalidAccount.isTransitValid(); // Returns false
 invalidAccount.isAccountValid(); // Returns false
 invalidAccount.transitErrors(); // Returns ["Transit number must be 5 digits long."]
