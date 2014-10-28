@@ -17,37 +17,12 @@ window.CanadianBankAccount = (function() {
   };
 
   CanadianBankAccount.prototype.isTransitValid = function() {
-    var isValid, _ref;
-    if (this.transit == null) {
-      isValid = false;
-    } else if (((_ref = this.data().transit) != null ? _ref.regex : void 0) == null) {
-      isValid = this.transit.match(this.defaultTransitRegex) != null;
-    } else if (_.isArray(this.data().transit.regex)) {
-      isValid = _.any(this.data().transit.regex, (function(_this) {
-        return function(regex) {
-          return _this.transit.match(regex) != null;
-        };
-      })(this));
-    } else {
-      isValid = this.transit.match(this.data().transit.regex) != null;
-    }
-    return isValid;
+    var _ref, _ref1;
+    return this.validate(this.transit, (_ref = (_ref1 = this.data().transit) != null ? _ref1.regex : void 0) != null ? _ref : this.defaultTransitRegex);
   };
 
   CanadianBankAccount.prototype.isAccountValid = function() {
-    var isValid;
-    if (this.account == null) {
-      isValid = false;
-    } else if (_.isArray(this.data().account.regex)) {
-      isValid = _.any(this.data().account.regex, (function(_this) {
-        return function(regex) {
-          return _this.account.match(regex) != null;
-        };
-      })(this));
-    } else {
-      isValid = this.account.match(this.data().account.regex) != null;
-    }
-    return isValid;
+    return this.validate(this.account, this.data().account.regex);
   };
 
   CanadianBankAccount.prototype.errors = function() {
@@ -75,6 +50,18 @@ window.CanadianBankAccount = (function() {
 
   CanadianBankAccount.prototype.data = function() {
     return Data[this.institution];
+  };
+
+  CanadianBankAccount.prototype.validate = function(value, regex) {
+    if ((value == null) || (regex == null)) {
+      return false;
+    } else if (_.isArray(regex)) {
+      return _.any(regex, function(regex) {
+        return value.match(regex) != null;
+      });
+    } else {
+      return value.match(regex) != null;
+    }
   };
 
   return CanadianBankAccount;

@@ -12,26 +12,10 @@ class window.CanadianBankAccount
     @data()?
 
   isTransitValid: ->
-    if !@transit?
-      isValid = false
-    else if !@data().transit?.regex?
-      isValid = @transit.match(@defaultTransitRegex)?
-    else if _.isArray(@data().transit.regex)
-      isValid = _.any @data().transit.regex, (regex) =>
-        @transit.match(regex)?
-    else
-      isValid = @transit.match(@data().transit.regex)?
-    isValid
+    @validate(@transit, @data().transit?.regex ? @defaultTransitRegex)
 
   isAccountValid: ->
-    if !@account?
-      isValid = false
-    else if _.isArray(@data().account.regex)
-      isValid = _.any @data().account.regex, (regex) =>
-        @account.match(regex)?
-    else
-      isValid = @account.match(@data().account.regex)?
-    isValid
+    @validate(@account, @data().account.regex)
 
   errors: ->
     @transitErrors().concat(@accountErrors())
@@ -50,3 +34,11 @@ class window.CanadianBankAccount
 
   data: ->
     Data[@institution]
+
+  validate: (value, regex) ->
+    if !value? || !regex?
+      false
+    else if _.isArray(regex)
+      _.any(regex, (regex) -> value.match(regex)?)
+    else
+      value.match(regex)?
