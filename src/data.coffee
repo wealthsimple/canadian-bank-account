@@ -22,7 +22,8 @@ module.exports =
   "010":
     account:
       regex: /^[0-9]{7}$/
-      error: "Canadian Imperial Bank of Commerce account number must be 7 digits long."
+      # Institution can be either CIBC or President's Choice, so use a generic error.
+      error: "Account number must be 7 digits long."
   "016":
     account:
       regex: /^[0-9]{9}$/

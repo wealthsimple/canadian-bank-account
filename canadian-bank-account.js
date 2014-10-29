@@ -110,7 +110,7 @@ module.exports = {
   "010": {
     account: {
       regex: /^[0-9]{7}$/,
-      error: "Canadian Imperial Bank of Commerce account number must be 7 digits long."
+      error: "Account number must be 7 digits long."
     }
   },
   "016": {
