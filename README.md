@@ -1,4 +1,4 @@
-# canadian-bank-account
+# canadian-bank-account [![Build Status](https://travis-ci.org/wealthsimple/canadian-bank-account.svg?branch=master)](https://travis-ci.org/wealthsimple/canadian-bank-account)
 
 Validate transit and account numbers of common Canadian banks.
 
