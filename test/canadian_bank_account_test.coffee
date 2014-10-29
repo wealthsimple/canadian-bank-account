@@ -82,7 +82,7 @@ describe "CanadianBankAccount", ->
         expect(@subject.transitErrors()).toEqual([])
         expect(@subject.errors()).toEqual(["Bank of Montreal account number must be 7 digits long."])
 
-    context "transit number is invalid", ->
+    context "transit number is invalid for BMO", ->
       beforeEach ->
         @subject = factory(transit: "123")
 
@@ -90,3 +90,12 @@ describe "CanadianBankAccount", ->
         expect(@subject.transitErrors()).toEqual(["Transit number must be 5 digits long."])
         expect(@subject.accountErrors()).toEqual([])
         expect(@subject.errors()).toEqual(["Transit number must be 5 digits long."])
+
+    context "transit number is invalid for Central 1", ->
+      beforeEach ->
+        @subject = factory(institution: "828", transit: "123")
+
+      it "returns the right error", ->
+        expect(@subject.transitErrors()).toEqual(["Central 1 transit number must begin with 10XXX."])
+        expect(@subject.accountErrors()).toEqual([])
+        expect(@subject.errors()).toEqual(["Central 1 transit number must begin with 10XXX."])

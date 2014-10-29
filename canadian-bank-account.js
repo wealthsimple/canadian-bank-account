@@ -34,7 +34,7 @@ window.CanadianBankAccount = (function() {
     var error, errors, _ref;
     errors = [];
     if (!this.isTransitValid()) {
-      error = (((_ref = this.data().transit) != null ? _ref.error : void 0) != null) || this.defaultTransitError;
+      error = ((_ref = this.data().transit) != null ? _ref.error : void 0) || this.defaultTransitError;
       errors.push(error);
     }
     return errors;
