@@ -107,12 +107,6 @@ module.exports = {
       error: "National Bank of Canada account number must be 7 digits long."
     }
   },
-  "010": {
-    account: {
-      regex: /^[0-9]{7}$/,
-      error: "Account number must be 7 digits long."
-    }
-  },
   "016": {
     account: {
       regex: /^[0-9]{9}$/,
