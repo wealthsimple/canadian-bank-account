@@ -15,6 +15,8 @@ class window.CanadianBankAccount
     @validate(@transit, @data()?.transit?.regex ? @defaultTransitRegex)
 
   isAccountValid: ->
+    # If we don't recognize this institution, assume validity
+    return true  unless @isKnownInstitution()
     @validate(@account, @data()?.account?.regex)
 
   errors: ->
@@ -36,10 +38,7 @@ class window.CanadianBankAccount
     Data[@institution]
 
   validate: (value, regex) ->
-    if !@isKnownInstitution()
-      # If we don't recognize this institution, assume validity
-      true
-    else if !value?
+    if !value?
       false
     else if _.isArray(regex)
       _.any(regex, (regex) -> value.match(regex)?)

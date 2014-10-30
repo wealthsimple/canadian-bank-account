@@ -60,8 +60,9 @@ describe "CanadianBankAccount", ->
         expect(factory(institution: "828", transit: "103456").isTransitValid()).toBe(false)
 
     context "for an unknown institution", ->
-      it "returns true", ->
-        expect(factory(institution: "789").isTransitValid()).toBe(true)
+      it "uses the default transit regex", ->
+        expect(factory(institution: "789", transit: "123").isTransitValid()).toBe(false)
+        expect(factory(institution: "789", transit: "12345").isTransitValid()).toBe(true)
 
   describe "errors", ->
     context "all provided numbers are valid", ->

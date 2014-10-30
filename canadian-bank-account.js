@@ -23,6 +23,9 @@ window.CanadianBankAccount = (function() {
 
   CanadianBankAccount.prototype.isAccountValid = function() {
     var _ref, _ref1;
+    if (!this.isKnownInstitution()) {
+      return true;
+    }
     return this.validate(this.account, (_ref = this.data()) != null ? (_ref1 = _ref.account) != null ? _ref1.regex : void 0 : void 0);
   };
 
@@ -54,9 +57,7 @@ window.CanadianBankAccount = (function() {
   };
 
   CanadianBankAccount.prototype.validate = function(value, regex) {
-    if (!this.isKnownInstitution()) {
-      return true;
-    } else if (value == null) {
+    if (value == null) {
       return false;
     } else if (_.isArray(regex)) {
       return _.any(regex, function(regex) {
@@ -105,12 +106,6 @@ module.exports = {
     account: {
       regex: /^[0-9]{7}$/,
       error: "National Bank of Canada account number must be 7 digits long."
-    }
-  },
-  "010": {
-    account: {
-      regex: /^[0-9]{7}$/,
-      error: "Account number must be 7 digits long."
     }
   },
   "016": {
