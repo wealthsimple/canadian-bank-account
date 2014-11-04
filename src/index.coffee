@@ -25,7 +25,7 @@ class window.CanadianBankAccount
   transitErrors: ->
     errors = []
     unless @isTransitValid()
-      error = @data().transit?.error || @defaultTransitError
+      error = @data()?.transit?.error || @defaultTransitError
       errors.push(error)
     errors
 

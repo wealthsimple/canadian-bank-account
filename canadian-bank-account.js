@@ -34,10 +34,10 @@ window.CanadianBankAccount = (function() {
   };
 
   CanadianBankAccount.prototype.transitErrors = function() {
-    var error, errors, _ref;
+    var error, errors, _ref, _ref1;
     errors = [];
     if (!this.isTransitValid()) {
-      error = ((_ref = this.data().transit) != null ? _ref.error : void 0) || this.defaultTransitError;
+      error = ((_ref = this.data()) != null ? (_ref1 = _ref.transit) != null ? _ref1.error : void 0 : void 0) || this.defaultTransitError;
       errors.push(error);
     }
     return errors;
