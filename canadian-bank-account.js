@@ -1,7 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var Data;
+var Validations;
 
-Data = require('./data');
+Validations = require('./validations');
 
 window.CanadianBankAccount = (function() {
   CanadianBankAccount.prototype.defaultTransitRegex = /^[0-9]{5}$/;
@@ -12,21 +12,21 @@ window.CanadianBankAccount = (function() {
     this.institution = _arg.institution, this.transit = _arg.transit, this.account = _arg.account;
   }
 
-  CanadianBankAccount.prototype.isKnownInstitution = function() {
-    return this.data() != null;
+  CanadianBankAccount.prototype.hasValidations = function() {
+    return this.validations() != null;
   };
 
   CanadianBankAccount.prototype.isTransitValid = function() {
     var _ref, _ref1, _ref2;
-    return this.validate(this.transit, (_ref = (_ref1 = this.data()) != null ? (_ref2 = _ref1.transit) != null ? _ref2.regex : void 0 : void 0) != null ? _ref : this.defaultTransitRegex);
+    return this.validate(this.transit, (_ref = (_ref1 = this.validations()) != null ? (_ref2 = _ref1.transit) != null ? _ref2.regex : void 0 : void 0) != null ? _ref : this.defaultTransitRegex);
   };
 
   CanadianBankAccount.prototype.isAccountValid = function() {
     var _ref, _ref1;
-    if (!this.isKnownInstitution()) {
+    if (!this.hasValidations()) {
       return true;
     }
-    return this.validate(this.account, (_ref = this.data()) != null ? (_ref1 = _ref.account) != null ? _ref1.regex : void 0 : void 0);
+    return this.validate(this.account, (_ref = this.validations()) != null ? (_ref1 = _ref.account) != null ? _ref1.regex : void 0 : void 0);
   };
 
   CanadianBankAccount.prototype.errors = function() {
@@ -37,7 +37,7 @@ window.CanadianBankAccount = (function() {
     var error, errors, _ref, _ref1;
     errors = [];
     if (!this.isTransitValid()) {
-      error = ((_ref = this.data()) != null ? (_ref1 = _ref.transit) != null ? _ref1.error : void 0 : void 0) || this.defaultTransitError;
+      error = ((_ref = this.validations()) != null ? (_ref1 = _ref.transit) != null ? _ref1.error : void 0 : void 0) || this.defaultTransitError;
       errors.push(error);
     }
     return errors;
@@ -47,13 +47,13 @@ window.CanadianBankAccount = (function() {
     var errors;
     errors = [];
     if (!this.isAccountValid()) {
-      errors.push(this.data().account.error);
+      errors.push(this.validations().account.error);
     }
     return errors;
   };
 
-  CanadianBankAccount.prototype.data = function() {
-    return Data[this.institution];
+  CanadianBankAccount.prototype.validations = function() {
+    return Validations[this.institution];
   };
 
   CanadianBankAccount.prototype.validate = function(value, regex) {
@@ -72,11 +72,11 @@ window.CanadianBankAccount = (function() {
 
 })();
 
-window.CanadianBankAccount.Data = Data;
+window.CanadianBankAccount.Validations = Validations;
 
 
 
-},{"./data":2}],2:[function(require,module,exports){
+},{"./validations":2}],2:[function(require,module,exports){
 module.exports = {
   "001": {
     account: {

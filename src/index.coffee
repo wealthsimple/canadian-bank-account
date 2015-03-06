@@ -1,4 +1,4 @@
-Data = require('./data')
+Validations = require('./validations')
 
 class window.CanadianBankAccount
   # Canadian transit/branch numbers are always 5 digits:
@@ -8,16 +8,16 @@ class window.CanadianBankAccount
 
   constructor: ({@institution, @transit, @account}) ->
 
-  isKnownInstitution: ->
-    @data()?
+  hasValidations: ->
+    @validations()?
 
   isTransitValid: ->
-    @validate(@transit, @data()?.transit?.regex ? @defaultTransitRegex)
+    @validate(@transit, @validations()?.transit?.regex ? @defaultTransitRegex)
 
   isAccountValid: ->
     # If we don't recognize this institution, assume validity
-    return true  unless @isKnownInstitution()
-    @validate(@account, @data()?.account?.regex)
+    return true  unless @hasValidations()
+    @validate(@account, @validations()?.account?.regex)
 
   errors: ->
     @transitErrors().concat(@accountErrors())
@@ -25,17 +25,17 @@ class window.CanadianBankAccount
   transitErrors: ->
     errors = []
     unless @isTransitValid()
-      error = @data()?.transit?.error || @defaultTransitError
+      error = @validations()?.transit?.error || @defaultTransitError
       errors.push(error)
     errors
 
   accountErrors: ->
     errors = []
-    errors.push(@data().account.error)  unless @isAccountValid()
+    errors.push(@validations().account.error)  unless @isAccountValid()
     errors
 
-  data: ->
-    Data[@institution]
+  validations: ->
+    Validations[@institution]
 
   validate: (value, regex) ->
     if !value?
@@ -45,4 +45,4 @@ class window.CanadianBankAccount
     else
       value.match(regex)?
 
-window.CanadianBankAccount.Data = Data
+window.CanadianBankAccount.Validations = Validations

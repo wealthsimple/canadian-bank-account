@@ -6,14 +6,14 @@ describe "CanadianBankAccount", ->
       account: attributes.account ? "1234567"
     })
 
-  describe "#isKnownInstitution", ->
+  describe "#hasValidations", ->
     context "institution is known", ->
       it "returns true", ->
-        expect(factory().isKnownInstitution()).toBe(true)
+        expect(factory().hasValidations()).toBe(true)
 
     context "institution is unknown", ->
       it "returns false", ->
-        expect(factory(institution: "789").isKnownInstitution()).toBe(false)
+        expect(factory(institution: "789").hasValidations()).toBe(false)
 
   describe "#isAccountValid", ->
     context "with a Scotiabank account", ->
