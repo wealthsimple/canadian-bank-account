@@ -59,8 +59,8 @@ window.CanadianBankAccount = (function() {
   CanadianBankAccount.prototype.validate = function(value, regex) {
     if (value == null) {
       return false;
-    } else if (_.isArray(regex)) {
-      return _.any(regex, function(regex) {
+    } else if (Array.isArray(regex)) {
+      return regex.some(function(regex) {
         return value.match(regex) != null;
       });
     } else {

@@ -2,7 +2,7 @@
 
 Validate transit and account numbers of common Canadian banks.
 
-The only dependency is [underscore.js](http://underscorejs.org/).
+There are no dependencies.
 
 ## Usage
 

@@ -40,8 +40,8 @@ class window.CanadianBankAccount
   validate: (value, regex) ->
     if !value?
       false
-    else if _.isArray(regex)
-      _.any(regex, (regex) -> value.match(regex)?)
+    else if Array.isArray(regex)
+      regex.some((regex) -> value.match(regex)?)
     else
       value.match(regex)?
 
