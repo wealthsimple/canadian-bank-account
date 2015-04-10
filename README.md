@@ -2,13 +2,13 @@
 
 Validate transit and account numbers of common Canadian banks.
 
-The only dependency is [underscore.js](http://underscorejs.org/).
+There are no dependencies.
 
 ## Usage
 
 ```javascript
 var tdBankAccount = new CanadianBankAccount({
-  institution: "003",
+  institution: "004",
   transit: "12345",
   account: "1234567"
 });
