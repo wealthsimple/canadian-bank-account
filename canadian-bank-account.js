@@ -114,8 +114,8 @@ module.exports = {
       error: "HSBC Bank of Canada transit number must begin with 10XXX."
     },
     account: {
-      regex: /^[0-9]{9}$/,
-      error: "HSBC Bank of Canada account number must be 9 digits long."
+      regex:  [/^[0-9]{9}$/, /^[0-9]{12}$/],
+      error: "HSBC Bank of Canada account number must be either 9 or 12 digits long."
     }
   },
   "614": {
