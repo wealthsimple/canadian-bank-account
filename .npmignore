@@ -1,0 +1,6 @@
+node_modules
+test
+src
+.travis.yml
+bower.json
+*.coffee

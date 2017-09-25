@@ -1,10 +1,13 @@
 {
-  "name": "canadian-bank-account",
-  "version": "0.0.1",
+  "name": "@wealthsimple/canadian-bank-account",
+  "version": "1.0.0",
   "description": "Validates transit and account numbers of common Canadian banks",
-  "main": "canadian-bank-account.js",
+  "main": "dist/canadian-bank-account.js",
   "scripts": {
-    "test": "node_modules/karma/bin/karma start karma.conf.coffee --single-run --browsers PhantomJS"
+    "test": "node_modules/karma/bin/karma start karma.conf.coffee --single-run --browsers PhantomJS",
+    "prebuild": "rm -rf dist",
+    "build": "node_modules/.bin/gulp browserify",
+    "prepublishonly": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
@@ -22,19 +25,20 @@
   },
   "homepage": "https://github.com/wealthsimple/canadian-bank-account",
   "devDependencies": {
-    "browserify": "6.2.0",
-    "coffee-script": "1.7.1",
-    "coffeeify": "0.7.0",
-    "gulp": "3.8.9",
-    "gulp-notify": "2.0.0",
-    "gulp-util": "3.0.1",
-    "karma": "0.12.24",
-    "karma-coffee-preprocessor": "0.2.1",
-    "karma-jasmine": "0.1.5",
-    "karma-osx-reporter": "0.1.0",
-    "karma-phantomjs-launcher": "0.1.4",
-    "karma-spec-reporter": "0.0.13",
-    "vinyl-source-stream": "0.1.1",
-    "lodash": "^2.4.1"
+    "browserify": "14.4.0",
+    "coffee-script": "1.12.7",
+    "coffeeify": "2.1.0",
+    "gulp": "3.9.1",
+    "gulp-notify": "3.0.0",
+    "gulp-util": "3.0.8",
+    "jasmine-core": "^2.8.0",
+    "karma": "1.7.1",
+    "karma-coffee-preprocessor": "1.0.1",
+    "karma-jasmine": "1.1.0",
+    "karma-osx-reporter": "0.2.1",
+    "karma-phantomjs-launcher": "1.0.4",
+    "karma-spec-reporter": "0.0.31",
+    "lodash": "4.17.4",
+    "vinyl-source-stream": "1.1.0"
   }
 }

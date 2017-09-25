@@ -1,7 +1,7 @@
 {
   "name": "canadian-bank-account",
   "description": "Validates transit and account numbers of common Canadian banks",
-  "main": "canadian-bank-account.js",
+  "main": "dist/canadian-bank-account.js",
   "license": "MIT",
   "homepage": "https://github.com/wealthsimple/canadian-bank-account",
   "moduleType": [],
