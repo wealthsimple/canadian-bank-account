@@ -28,7 +28,7 @@ invalidAccount.accountErrors(); // Returns ["Bank of Montreal account number mus
 
 ## Acknowledgments
 
-Validation rules based on the following article: [Square - Bank Account Troubleshooting](https://squareup.com/help/en-ca/article/5173-bank-account-troubleshooting)
+Validation rules based on the following article: [Square - Bank Account Troubleshooting](https://squareup.com/help/ca/en/article/6097-bank-account-troubleshooting)
 
 ## License
 
